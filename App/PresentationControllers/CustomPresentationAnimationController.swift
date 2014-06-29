@@ -25,13 +25,11 @@ class CustomPresentationAnimationController: NSObject, UIViewControllerAnimatedT
     }
 
     func animateTransition(transitionContext: UIViewControllerContextTransitioning!)  {
-        if let context = transitionContext {
-            if self.isPresenting {
-                self.animatePresentationWithTransitionContext(context)
-            }
-            else {
-                animateDismissalWithTransitionContext(context)
-            }
+        if isPresenting {
+            animatePresentationWithTransitionContext(transitionContext)
+        }
+        else {
+            animateDismissalWithTransitionContext(transitionContext)
         }
     }
 
