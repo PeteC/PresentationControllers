@@ -8,7 +8,7 @@ import UIKit
 
 class CustomPresentationController: UIPresentationController {
 
-    @lazy var dimmingView :UIView = {
+    lazy var dimmingView :UIView = {
         let view = UIView(frame: self.containerView!.bounds)
         view.backgroundColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
         view.alpha = 0.0

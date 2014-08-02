@@ -29,7 +29,7 @@ class MessageViewController: UIViewController, UIViewControllerTransitioningDele
     func presentationControllerForPresentedViewController(presented: UIViewController!, presentingViewController presenting: UIViewController!, sourceViewController source: UIViewController!) -> UIPresentationController! {
 
         if presented == self {
-            return CustomPresentationController(presentingViewController: presenting, presentedViewController: presented)
+            return CustomPresentationController(presentedViewController: presented, presentingViewController: presenting)
         }
 
         return nil
