@@ -20,11 +20,11 @@ class CustomPresentationAnimationController: NSObject, UIViewControllerAnimatedT
 
     // ---- UIViewControllerAnimatedTransitioning methods
 
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning!) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
         return self.duration
     }
 
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning!)  {
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning)  {
         if isPresenting {
             animatePresentationWithTransitionContext(transitionContext)
         }
@@ -37,9 +37,9 @@ class CustomPresentationAnimationController: NSObject, UIViewControllerAnimatedT
     // ---- Helper methods
 
     func animatePresentationWithTransitionContext(transitionContext: UIViewControllerContextTransitioning) {
-        let presentedController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
+        let presentedController = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)!
         let presentedControllerView = transitionContext.viewForKey(UITransitionContextToViewKey)!
-        let containerView = transitionContext.containerView()!
+        let containerView = transitionContext.containerView()
 
         // Position the presented view off the top of the container view
         presentedControllerView.frame = transitionContext.finalFrameForViewController(presentedController)
@@ -57,7 +57,7 @@ class CustomPresentationAnimationController: NSObject, UIViewControllerAnimatedT
 
     func animateDismissalWithTransitionContext(transitionContext: UIViewControllerContextTransitioning) {
         let presentedControllerView = transitionContext.viewForKey(UITransitionContextFromViewKey)!
-        let containerView = transitionContext.containerView()!
+        let containerView = transitionContext.containerView()
 
         // Animate the presented view off the bottom of the view
         UIView.animateWithDuration(self.duration, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.0, options: .AllowUserInteraction, animations: {

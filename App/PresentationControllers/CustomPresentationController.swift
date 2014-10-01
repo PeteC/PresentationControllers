@@ -22,10 +22,11 @@ class CustomPresentationController: UIPresentationController {
         self.containerView.addSubview(self.presentedView())
 
         // Fade in the dimming view alongside the transition
-        let transitionCoordinator = self.presentingViewController.transitionCoordinator()
-        transitionCoordinator.animateAlongsideTransition({(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
-            self.dimmingView.alpha  = 1.0
-        }, completion:nil)
+        if let transitionCoordinator = self.presentingViewController.transitionCoordinator() {
+            transitionCoordinator.animateAlongsideTransition({(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+                self.dimmingView.alpha  = 1.0
+            }, completion:nil)
+        }
     }
 
     override func presentationTransitionDidEnd(completed: Bool)  {
@@ -37,10 +38,11 @@ class CustomPresentationController: UIPresentationController {
 
     override func dismissalTransitionWillBegin()  {
         // Fade out the dimming view alongside the transition
-        let transitionCoordinator = self.presentingViewController.transitionCoordinator()
-        transitionCoordinator.animateAlongsideTransition({(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
-            self.dimmingView.alpha  = 0.0
-        }, completion:nil)
+        if let transitionCoordinator = self.presentingViewController.transitionCoordinator() {
+            transitionCoordinator.animateAlongsideTransition({(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
+                self.dimmingView.alpha  = 0.0
+            }, completion:nil)
+        }
     }
 
     override func dismissalTransitionDidEnd(completed: Bool) {
@@ -61,7 +63,7 @@ class CustomPresentationController: UIPresentationController {
 
     // ---- UIContentContainer protocol methods
 
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator transitionCoordinator: UIViewControllerTransitionCoordinator!) {
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator transitionCoordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: transitionCoordinator)
 
         transitionCoordinator.animateAlongsideTransition({(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
