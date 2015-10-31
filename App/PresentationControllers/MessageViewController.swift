@@ -7,7 +7,7 @@ import UIKit
 
 
 class MessageViewController: UIViewController, UIViewControllerTransitioningDelegate {
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commonInit()
     }
@@ -26,7 +26,7 @@ class MessageViewController: UIViewController, UIViewControllerTransitioningDele
 
     // ---- UIViewControllerTransitioningDelegate methods
 
-    func presentationControllerForPresentedViewController(presented: UIViewController!, presentingViewController presenting: UIViewController!, sourceViewController source: UIViewController!) -> UIPresentationController! {
+    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
 
         if presented == self {
             return CustomPresentationController(presentedViewController: presented, presentingViewController: presenting)
@@ -35,7 +35,7 @@ class MessageViewController: UIViewController, UIViewControllerTransitioningDele
         return nil
     }
 
-    func animationControllerForPresentedController(presented: UIViewController!, presentingController presenting: UIViewController!, sourceController source: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
         if presented == self {
             return CustomPresentationAnimationController(isPresenting: true)
@@ -45,7 +45,7 @@ class MessageViewController: UIViewController, UIViewControllerTransitioningDele
         }
     }
 
-    func animationControllerForDismissedController(dismissed: UIViewController!) -> UIViewControllerAnimatedTransitioning! {
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
         if dismissed == self {
             return CustomPresentationAnimationController(isPresenting: false)
