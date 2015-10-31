@@ -31,7 +31,7 @@
 /* Begin PBXFileReference section */
 		B547B3D8195C0A3B007C1656 /* background.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.JPG; sourceTree = "<group>"; };
 		B547B3DA195C0AC3007C1656 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
-		B547B3DC195C10D2007C1656 /* CustomPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
+		B547B3DC195C10D2007C1656 /* CustomPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; usesTabs = 0; };
 		B547B3DE195C19FC007C1656 /* CustomPresentationAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPresentationAnimationController.swift; sourceTree = "<group>"; usesTabs = 0; };
 		B5FF35C2195C09E800170C7D /* PresentationControllers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PresentationControllers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5FF35C6195C09E800170C7D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };

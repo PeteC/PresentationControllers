@@ -8,11 +8,8 @@ import UIKit
 
 class CustomPresentationController: UIPresentationController {
 
-    lazy var dimmingView :UIView = {
-        let view = UIView(frame: self.containerView!.bounds)
-        view.backgroundColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.5)
-        view.alpha = 0.0
-        return view
+    lazy var dimmingView: UIVisualEffectView = {
+        return UIVisualEffectView(frame: self.containerView!.bounds)
     }()
 
     override func presentationTransitionWillBegin() {
@@ -29,10 +26,12 @@ class CustomPresentationController: UIPresentationController {
         containerView.addSubview(dimmingView)
         containerView.addSubview(presentedView)
 
-        // Fade in the dimming view alongside the transition
+        // Set the effect on the visual effect view inside the animation block 
+        // causes it to animate in (https://forums.developer.apple.com/thread/4140)
+        // Do this alongside the transition
         if let transitionCoordinator = self.presentingViewController.transitionCoordinator() {
             transitionCoordinator.animateAlongsideTransition({(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
-                self.dimmingView.alpha = 1.0
+                self.dimmingView.effect = UIBlurEffect(style: .Light)
             }, completion:nil)
         }
     }
@@ -45,10 +44,10 @@ class CustomPresentationController: UIPresentationController {
     }
 
     override func dismissalTransitionWillBegin()  {
-        // Fade out the dimming view alongside the transition
+        // Remove the effect alongside the transition
         if let transitionCoordinator = self.presentingViewController.transitionCoordinator() {
             transitionCoordinator.animateAlongsideTransition({(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
-                self.dimmingView.alpha  = 0.0
+                self.dimmingView.effect = nil
             }, completion:nil)
         }
     }
