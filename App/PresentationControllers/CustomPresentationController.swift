@@ -16,15 +16,23 @@ class CustomPresentationController: UIPresentationController {
     }()
 
     override func presentationTransitionWillBegin() {
+
+		guard
+			let containerView = containerView,
+			let presentedView = presentedView()
+		else {
+			return
+		}
+
         // Add the dimming view and the presented view to the heirarchy
-        self.dimmingView.frame = self.containerView.bounds
-        self.containerView.addSubview(self.dimmingView)
-        self.containerView.addSubview(self.presentedView())
+        dimmingView.frame = containerView.bounds
+        containerView.addSubview(dimmingView)
+        containerView.addSubview(presentedView)
 
         // Fade in the dimming view alongside the transition
         if let transitionCoordinator = self.presentingViewController.transitionCoordinator() {
             transitionCoordinator.animateAlongsideTransition({(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
-                self.dimmingView.alpha  = 1.0
+                self.dimmingView.alpha = 1.0
             }, completion:nil)
         }
     }
@@ -53,8 +61,15 @@ class CustomPresentationController: UIPresentationController {
     }
 
     override func frameOfPresentedViewInContainerView() -> CGRect {
+
+		guard
+			let containerView = containerView
+		else {
+			return CGRect()
+		}
+
         // We don't want the presented view to fill the whole container view, so inset it's frame
-        var frame = self.containerView.bounds;
+        var frame = containerView.bounds;
         frame = CGRectInset(frame, 50.0, 50.0)
 
         return frame
@@ -66,8 +81,14 @@ class CustomPresentationController: UIPresentationController {
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator transitionCoordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: transitionCoordinator)
 
+		guard
+			let containerView = containerView
+		else {
+			return
+		}
+
         transitionCoordinator.animateAlongsideTransition({(context: UIViewControllerTransitionCoordinatorContext!) -> Void in
-            self.dimmingView.frame = self.containerView.bounds
+            self.dimmingView.frame = containerView.bounds
         }, completion:nil)
     }
 }
